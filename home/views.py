@@ -1,3 +1,4 @@
+from re import sub
 from urllib import request
 from django.shortcuts import render
 from django.http.response import HttpResponse, HttpResponseRedirect
@@ -63,12 +64,13 @@ def authorityLogin(request):
 def victimHome(request):
     if request.user.is_anonymous:
         return HttpResponseRedirect("/victimLogin")
-    return render(request, "victimHome.html")
+    return render(request, "victimHome.html", {'victim': request.user})
 
 def authorityHome(request):
     if request.user.is_anonymous:
         return HttpResponseRedirect("/authorityLogin")
-    return render(request, "authorityHome.html")
+    complains = Complain.objects.all()
+    return render(request, "authorityHome.html", {'complains': complains})
 
 def victimLogout(request):
     logout(request)
@@ -77,3 +79,15 @@ def victimLogout(request):
 def authorityLogout(request):
     logout(request)
     return HttpResponseRedirect("/authorityLogin")
+
+def victimComplaint(request, id):
+    if request.method == 'POST':
+        subject = request.POST['subject']
+        description = request.POST['description']
+        date = request.POST['date']
+        location = request.POST['location']
+        pincode = request.POST['pincode']
+        victim = Victim.objects.get(id=id)
+        complain = Complain(subject=subject, description=description,date=date,address=location,pincode=pincode,person=victim)
+        complain.save()
+    return HttpResponseRedirect('/victimHome')

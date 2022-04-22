@@ -11,4 +11,5 @@ urlpatterns = [
     path('victimHome', views.victimHome, name="victimHome"),
     path('victimLogout', views.victimLogout, name="victimLogout"),
     path('authorityLogout', views.authorityLogout, name="authorityLogout"),
+    path('victimComplaint/<int:id>', views.victimComplaint, name='victimComplaint')
 ]

@@ -9,5 +9,14 @@
 <body>
     Welcome Victim
     <a href="/victimLogout">Logout</a>
+    <form action="/victimComplaint/{{victim.id}}" method="post">
+        {%csrf_token%}
+        <input type="text" name="subject" id="subject" placeholder="Subject of complain">
+        <input type="textarea" name="description" id="description" placeholder="Description of complain">
+        <input type="date" name="date" id="date">
+        <input type="text" name="location" id="location" placeholder="location">
+        <input type="text" name="pincode" id="pincode" placeholder="pincode">
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
