@@ -15,4 +15,12 @@ urlpatterns = [
     path('pastComplains', views.pastComplains, name='pastComplains'),
     path('editComplain/<int:id>', views.editComplain, name='editComplain'),
     path('publicComplains', views.publicComplains, name='publicComplains'),
+    path('contactAuthority', views.contactAuthority, name="contactAuthority"),
+    path('contactVictims', views.contactVictims, name="contactVictims"),
+    path('contactAuth/<int:id>', views.contactAuth, name="contactAuth"),
+    path('contactVict/<int:id>', views.contactVict, name="contactVict"),
+    path('<str:room>/', views.room, name='room'),
+    path('checkview', views.checkview, name='checkview'),
+    path('send', views.send, name='send'),
+    path('getMessages/<str:room>/', views.getMessages, name='getMessages'),
 ]
