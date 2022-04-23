@@ -69,7 +69,8 @@ def victimHome(request):
 def authorityHome(request):
     if request.user.is_anonymous:
         return HttpResponseRedirect("/authorityLogin")
-    complains = Complain.objects.all()
+    authority = Authority.objects.get(name=request.user.username)
+    complains = Complain.objects.filter(pincode=authority.pincode)
     return render(request, "authorityHome.html", {'complains': complains})
 
 def victimLogout(request):
@@ -88,6 +89,23 @@ def victimComplaint(request, id):
         location = request.POST['location']
         pincode = request.POST['pincode']
         victim = Victim.objects.get(id=id)
-        complain = Complain(subject=subject, description=description,date=date,address=location,pincode=pincode,person=victim)
+        type = request.POST['type']
+        complain = Complain(subject=subject, description=description,date=date,address=location,pincode=pincode,person=victim.name,type=type)
         complain.save()
     return HttpResponseRedirect('/victimHome')
+
+def pastComplains(request):
+    complains = Complain.objects.filter(person=request.user.username)
+    return render(request, "pastComplain.html", {'complains':complains})
+
+def editComplain(request, id):
+    complain = Complain.objects.get(id=id)
+    if request.method == 'POST':
+        scope = request.POST['scope']
+        complain.scope = scope
+        complain.save()
+        return HttpResponseRedirect('/pastComplains')
+    
+def publicComplains(request):
+    complains = Complain.objects.filter(scope="Public")
+    return render(request, "publicComplains.html", {"complains": complains})

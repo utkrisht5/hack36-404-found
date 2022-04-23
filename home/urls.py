@@ -11,5 +11,8 @@ urlpatterns = [
     path('victimHome', views.victimHome, name="victimHome"),
     path('victimLogout', views.victimLogout, name="victimLogout"),
     path('authorityLogout', views.authorityLogout, name="authorityLogout"),
-    path('victimComplaint/<int:id>', views.victimComplaint, name='victimComplaint')
+    path('victimComplaint/<int:id>', views.victimComplaint, name='victimComplaint'),
+    path('pastComplains', views.pastComplains, name='pastComplains'),
+    path('editComplain/<int:id>', views.editComplain, name='editComplain'),
+    path('publicComplains', views.publicComplains, name='publicComplains'),
 ]

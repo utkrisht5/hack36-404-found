@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%for complain in complains%}
+    <div>
+        <h3>{{complain.subject}}</h3>
+        <p>{{complain.description}}</p>
+        <p>{{complain.date}}</p>
+        <p>{{complain.address}}</p>
+        </div>
+    {%endfor%}
+</body>
+</html>

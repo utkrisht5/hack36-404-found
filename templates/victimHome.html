@@ -12,11 +12,31 @@
     <form action="/victimComplaint/{{victim.id}}" method="post">
         {%csrf_token%}
         <input type="text" name="subject" id="subject" placeholder="Subject of complain">
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Type</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option value="Theft">Theft</option>
+                <option value="Fraud">Fraud</option>
+                <option value="Phishing">Phishing</option>
+                <option value="Murder">Murder</option>
+                <option value="Rape">Rape</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
         <input type="textarea" name="description" id="description" placeholder="Description of complain">
         <input type="date" name="date" id="date">
         <input type="text" name="location" id="location" placeholder="location">
         <input type="text" name="pincode" id="pincode" placeholder="pincode">
+        <div class="form-group">
+            <label for="exampleFormControlSelect2">Private</label>
+            <select class="form-control" id="exampleFormControlSelect2">
+                <option value="Private">Private</option>
+                <option value="Public">Public</option>
+            </select>
+        </div>
         <button type="submit">Submit</button>
     </form>
+    <a href="/pastComplains">Past complaints</a>
+    <a href="/publicComplains">Public complaints</a>
 </body>
 </html>
